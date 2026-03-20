@@ -8,37 +8,37 @@ export default function Projects() {
   const sectionRef = useRef();
 
   const projects = [
-    {
-      title: "Netflixo",
-      image: "/images/project1.jpeg",
-      link: "https://netflixo.vercel.app",
-    },
-    {
-      title: "School Community",
-      image: "images/project2.jpg",
-      link: "https://example.com",
-    },
-    {
-      title: "Animax",
-      image: "images/project3.jpg",
-      link: "https://example.com",
-    },
-    {
-      title: "Billing System",
-      image: "images/project4.jpg",
-      link: "https://billingsystemdashboard.netlify.app",
-    },
-    {
-      title: "Project Five",
-      image: "/images/project5.jpg",
-      link: "https://example.com",
-    },
-    {
-      title: "Project Six",
-      image: "/images/project6.jpg",
-      link: "https://example.com",
-    },
-  ];
+  {
+    title: "Netflixo",
+    image: "/images/project1.jpeg",
+    link: "https://netflixo.vercel.app",
+  },
+  {
+    title: "School Community",
+    image: "/images/project2.jpg",
+    link: "https://example.com",
+  },
+  {
+    title: "Animax",
+    image: "/images/project3.jpg",
+    link: "https://example.com",
+  },
+  {
+    title: "Billing System",
+    image: "/images/project4.jpg",
+    link: "https://billingsystemdashboard.netlify.app",
+  },
+  {
+    title: "Project Five",
+    image: "/images/project5.jpg",
+    comingSoon: true,
+  },
+  {
+    title: "Project Six",
+    image: "/images/project6.jpg",
+    comingSoon: true,
+  },
+];
 
   useEffect(() => {
     gsap.to(".projects-bg", {
@@ -96,29 +96,50 @@ export default function Projects() {
         </h2>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {projects.map((proj, i) => (
-            <a
-              key={i}
-              href={proj.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card group block overflow-hidden rounded-xl"
-            >
-              <div className="relative">
-                <img
-                  src={proj.image}
-                  alt={proj.title}
-                  className="w-full h-56 object-cover group-hover:scale-110 transition duration-500"
-                />
+          {projects.map((proj, i) => {
+  const CardWrapper = proj.comingSoon ? "div" : "a";
 
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+  return (
+    <CardWrapper
+      key={i}
+      href={!proj.comingSoon ? proj.link : undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`project-card group block overflow-hidden rounded-xl ${
+        proj.comingSoon ? "cursor-not-allowed" : ""
+      }`}
+    >
+      <div className="relative">
+        <img
+          src={proj.image}
+          alt={proj.title}
+          className={`w-full h-56 object-cover transition duration-500 ${
+            proj.comingSoon
+              ? "grayscale opacity-60"
+              : "group-hover:scale-110"
+          }`}
+        />
 
-                <h3 className="absolute bottom-4 left-4 text-white text-lg">
-                  {proj.title}
-                </h3>
-              </div>
-            </a>
-          ))}
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+
+        {/* Title */}
+        <h3 className="absolute bottom-4 left-4 text-white text-lg">
+          {proj.title}
+        </h3>
+
+        {/* 🔥 Coming Soon Badge */}
+        {proj.comingSoon && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="px-4 py-2 border border-yellow-400 text-yellow-400 rounded backdrop-blur-md bg-black/40 shadow-[0_0_15px_rgba(250,204,21,0.3)]">
+              Coming Soon
+            </span>
+          </div>
+        )}
+      </div>
+    </CardWrapper>
+  );
+})}
         </div>
       </div>
     </section>

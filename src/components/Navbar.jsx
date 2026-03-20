@@ -9,9 +9,9 @@ export default function Navbar() {
 
         {/* Logo */}
         <h1 className="text-white text-xl md:text-2xl font-semibold tracking-widest">
-          TITAN
+          VULCAN
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-            DEVELOPMENT
+            TECHNOLOGY
             </span>
         </h1>
 
