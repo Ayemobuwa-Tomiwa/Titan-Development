@@ -1,0 +1,49 @@
+/* LogoLoader.css */
+.logo-loader-wrapper {
+  /* Adjust size as needed */
+  width: 120px; 
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  
+  /* The magic: This turns your PNG into a stencil */
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+  /* The silhouette base color (a very faint yellow/gray so you can see the outline) */
+  background-color: rgba(250, 204, 21, 0.15); 
+}
+
+.logo-liquid-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120%; /* Slightly taller to ensure full coverage */
+  
+  /* The golden yellow gradient matching your brand */
+  background: linear-gradient(to top, #eab308, #facc15); 
+  
+  /* The 2-second looping fill animation */
+  animation: liquidFill 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: bottom;
+}
+
+@keyframes liquidFill {
+  0% {
+    transform: translateY(100%);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 0; /* Fades out cleanly at the top before restarting */
+  }
+}

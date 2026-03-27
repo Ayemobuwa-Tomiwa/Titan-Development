@@ -16,3 +16,37 @@
 .animate-fadeIn {
   animation: fadeIn 0.4s ease;
 }
+
+.fill-mask {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 45%,
+    gold 50%,
+    gold 100%
+  );
+
+  animation: diagonalFill 1.2s ease forwards;
+
+  mask-image: url("/src/assets/icons/vulcoreicon.png");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  -webkit-mask-image: url("/src/assets/icons/vulcoreicon.png");
+}
+
+@keyframes diagonalFill {
+
+  from {
+    transform: translateY(100%) translateX(-100%);
+  }
+
+  to {
+    transform: translateY(0%) translateX(0%);
+  }
+
+}

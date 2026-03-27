@@ -6,10 +6,12 @@ import {
   Mail,
 } from "lucide-react";
 import whatsapp from "../assets/icons/whatsapp.jpg";
-import whatsapp2 from "../assets/icons/whatsapp1.jpg";
+import whatsapp2 from "../assets/icons/whatsapp2.jpg";
+import X1 from "../assets/icons/X1.jpg";
+import X2 from "../assets/icons/X2.jpg";
 
 export default function Footer() {
-  const [hovered, setHovered] = useState(false);
+  const [hoveredIcon, setHoveredIcon] = useState(null);
   return (
     <footer className="bg-black border-t border-white/10 pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
@@ -24,8 +26,10 @@ export default function Footer() {
             </h3>
 
             <p className="text-gray-400 text-sm pl-7">
-              Delivering scalable and modern software
-              solutions for clients worldwide.
+              We are committed to delivering exceptional results and building lasting relationships with our clients.
+            </p> <br></br>
+            <p className="text-gray-400 text-sm pl-7">
+              Reach out us with your vision and watch as our team of experts shape it into your reality.
             </p>
           </div>
 
@@ -67,8 +71,9 @@ export default function Footer() {
               Follow Us
             </h4>
 
-            <div className="flex gap-4 pl-7">
+            <div className="flex pl-7 flex-row md:flex-row gap-10">
 
+              <div className="grid grid-flow-row gap-3">
               <a href="#" target="_blank">
                 <Linkedin className="hover:text-yellow-400 transition" />
               </a>
@@ -76,18 +81,33 @@ export default function Footer() {
               <a href="#" target="_blank">
                 <Instagram className="hover:text-yellow-400 transition" />
               </a>
+              </div>
 
+              <div className="grid grid-flow-row gap-3">
               <a
-      href="https://wa.me/2349036046611"
-      target="_blank"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <img
-        src={hovered ? whatsapp2 : whatsapp}
-        className="w-6 h-6 transition duration-300"
-      />
-    </a>
+  href="https://wa.me/2349036046611"
+  target="_blank"
+  onMouseEnter={() => setHoveredIcon("whatsapp")}
+  onMouseLeave={() => setHoveredIcon(null)}
+>
+  <img
+    src={hoveredIcon === "whatsapp" ? whatsapp2 : whatsapp}
+    className="w-6 h-6 transition duration-300"
+  />
+</a>
+
+    <a
+  href="#"
+  target="_blank"
+  onMouseEnter={() => setHoveredIcon("x")}
+  onMouseLeave={() => setHoveredIcon(null)}
+>
+  <img
+    src={hoveredIcon === "x" ? X2 : X1}
+    className="w-6 h-6 transition duration-300"
+  />
+</a>
+</div>
 
             </div>
 
@@ -101,17 +121,17 @@ export default function Footer() {
           <div className="flex gap-6">
 
             <a
-              href="#"
+              href="/legal"
               className="hover:text-white"
             >
               Privacy Policy
             </a>
 
             <a
-              href="#"
+              href="/legal"
               className="hover:text-white"
             >
-              Terms of Service
+              Terms of Services
             </a>
 
           </div>
